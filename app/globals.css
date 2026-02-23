@@ -1,15 +1,80 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* 글꼴 */
+  --font-sans: var(--font-spoqa), ui-sans-serif, system-ui, sans-serif;
 
-@theme inline {
+  /* --- 색상 팔레트 --- */
+
+  /* Gray Scale (요청하신 4단계 고정) */
+  --color-gray-100: #DEDEDE;
+  --color-gray-200: #C4C4C4;
+  --color-gray-300: #ABABAB;
+  --color-gray-400: #919191;
+
+  /* Black Scale (새로 추가됨) */
+  --color-black-100: #F9F9F9;
+  --color-black-200: #6B6B6B;
+  --color-black-300: #5E5E5E;
+  --color-black-400: #525252;
+  --color-black-500: #454545;
+  --color-black-600: #373737;
+  --color-black-700: #2B2B2B; /* RGB(43,43,43) 변환값 */
+  --color-black-800: #1F1F1F; /* RGB(31,31,31) 변환값 */
+  --color-black-900: #121212; /* RGB(18,18,18) 변환값 */
+  --color-black-950: #050505; /* RGB(5,5,5) 변환값 */
+
+  /* Blue Scale (기존 유지) */
+  --color-blue-100: #FFFFFF;
+  --color-blue-200: #ECEFF4;
+  --color-blue-300: #CBD3E1;
+  --color-blue-400: #ABB8CE;
+  --color-blue-500: #8B9DBC;
+  --color-blue-600: #6A82A9;
+  --color-blue-700: #52698E;
+  --color-blue-800: #40516E;
+  --color-blue-900: #2D394E;
+  --color-blue-950: #1A212D;
+
+  /* Illustration / Chart Colors (전체 추가) */
+  /* Row 1 */
+  --color-ill-yellow: #FBC85B;
+  --color-ill-green: #48BB98;
+  --color-ill-purple: #8E80E3;
+  --color-ill-blue: #5195EE;
+  --color-ill-red: #E46E80;
+  --color-ill-brown: #9A695E;
+  /* Row 2 (추가 요청분) */
+  --color-ill-dark-yellow: #E8AA26;
+  --color-ill-gray-dark-1: #3E3E3E;
+  --color-ill-gray-dark-2: #3E414D;
+  --color-ill-gray-dark-3: #494D59;
+  --color-ill-gray-light-1: #C7D1E0;
+  --color-ill-gray-light-2: #E3E9F1;
+  --color-ill-gray-light-3: #EFF3F8;
+
+  /* Line Colors */
+  --color-line-1: #F2F2F2;
+  --color-line-2: #CFDBEA;
+
+  /* State & Background */
+  --color-state-error: #FF6577;
+  --color-bg-base: #F5F7FA;
+
+  /* Semantic Mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* 브레이크포인트 커스텀 */
+  --breakpoint-sm: 375px;
+  --breakpoint-md: 744px;
+  --breakpoint-lg: 1440px;
+  --breakpoint-xl: 1920px;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1A212D;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +84,32 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@layer base {
+  h1 {
+    @apply mb-4 text-4xl font-bold;
+  }
+  h2 {
+    @apply mb-3 text-3xl font-bold;
+  }
+  h3 {
+    @apply mb-2 text-2xl font-semibold;
+  }
+  
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-background) inset !important;
+    -webkit-text-fill-color: var(--color-foreground) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
